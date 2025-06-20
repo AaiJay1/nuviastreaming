@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuvia - Upgrade Your Music Experience</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      --primary-color: #ffffff;
+      --highlight-color: #ff7a00;
+      --accent-color: #440000;
+      --premium-color: #ffc300;
+      --site-bg: #1a0000;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--site-bg);
+      color: var(--primary-color);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 1.5rem;
+    }
+
+    .hero-text {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2rem;
+      line-height: 2.4rem;
+      margin-bottom: 0.75rem;
+      color: white;
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.95);
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 200px;
+      background-color: var(--accent-color);
+      background-image: url('home.png');
+      background-size: cover;
+      background-position: center;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+    }
+
+    .payment-info,
+    .package,
+    .testimonial {
+      background-color: var(--accent-color);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .payment-info h2 {
+      color: var(--highlight-color);
+    }
+
+    .payment-info p,
+    .package p,
+    .testimonial {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .packages {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .package.premium {
+      border: 2px solid var(--premium-color);
+    }
+
+    .package.premium h3 {
+      color: var(--premium-color);
+    }
+
+    .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+
+    .price.premium {
+      color: var(--premium-color);
+    }
+
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+      display: block;
+    }
+
+    .btn-basic {
+      background-color: var(--highlight-color);
+      color: var(--primary-color);
+      border: none;
+    }
+
+    .btn-basic:hover {
+      background-color: #e86e00;
+      transform: translateY(-2px);
+    }
+
+    .btn-premium {
+      background-color: var(--premium-color);
+      color: var(--accent-color);
+      border: none;
+    }
+
+    .btn-premium:hover {
+      background-color: #e6c200;
+      transform: translateY(-2px);
+    }
+
+    .recommended-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: var(--premium-color);
+      color: var(--accent-color);
+      padding: 0.3rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-bottom-left-radius: 8px;
+    }
+
+    .testimonial-carousel {
+      position: relative;
+      min-height: 180px;
+    }
+
+    .testimonial {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      background-color: var(--accent-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+      font-style: italic;
+    }
+
+    .testimonial.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .testimonial::before,
+    .testimonial::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--highlight-color);
+      opacity: 0.3;
+      position: absolute;
+    }
+
+    .testimonial::before {
+      top: 0;
+      left: 10px;
+    }
+
+    .testimonial::after {
+      bottom: -20px;
+      right: 10px;
+    }
+
+    .testimonial-author {
+      display: block;
+      text-align: right;
+      margin-top: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      color: #eee;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .security-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .security-icon {
+      color: var(--highlight-color);
+    }
+
+    @media (min-width: 768px) {
+      .packages {
+        flex-direction: row;
+      }
+
+      .btn-group {
+        flex-direction: row;
+      }
+
+      .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Hero Text ABOVE image -->
+    <div class="hero-text">
+      <h1>Move to the brighter side of life.</h1>
+      <p>Earn rewards every time you listen to your favorite songs</p>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="hero-image"></div>
+
+    <!-- Payment Info -->
+    <div class="payment-info">
+      <h2>Start Your Musical Journey Today</h2>
+      <p>Make payment for your preferred package to unlock unlimited access to millions of songs.</p>
+      <p><strong>Your account activation begins immediately after payment verification</strong> - typically within 5 minutes!</p>
+    </div>
+
+    <!-- Packages -->
+     <div class="package premium">
+        <div class="recommended-badge">MOST POPULAR</div>
+        <h3>Premium Subscription</h3>
+        <p>Unlimited streaming with no restrictions. Highest audio quality and exclusive content.</p>
+        <p><strong>Plus:</strong> Earn 2x more rewards for every song you play</p>
+        <div class="price premium">N12,500</div>
+      </div>
+    </div>
+
+    <div class="packages">
+      <div class="package">
+        <h3>Basic Subscription</h3>
+        <p>Perfect for casual listeners. Stream up to 10 songs daily with standard audio quality.</p>
+        <p><strong>Great for:</strong> Discovering new music without overwhelming choices</p>
+        <div class="price">N7,500</div>
+      </div>
+      
+
+    <!-- Call to Action Buttons -->
+    <div class="btn-group">
+       <a href="gate.html" class="btn btn-premium">Subscribe to Premium</a>
+      <a href="gate.html" class="btn btn-basic">Subscribe to Basic</a>
+    </div>
+
+    <!-- Testimonial Carousel -->
+    <div class="testimonial-carousel">
+      <div class="testimonial active">
+        "Since joining Nuvia Premium, I've not only enjoyed unlimited music but also earned over N250,000 in rewards just by listening to my favorite artists. The sound quality is exceptional, and the exclusive content makes it worth every naira!"
+        <span class="testimonial-author">- Adeola K., Lagos</span>
+      </div>
+      <div class="testimonial">
+        "Nuvia completely changed how I enjoy music. I earn while vibing during my commute. This platform is genius!"
+        <span class="testimonial-author">- Tolu O., Abuja</span>
+      </div>
+      <div class="testimonial">
+        "As a DJ, access to unlimited high-quality audio has been a blessing. And the extra earnings? Unbelievable!"
+        <span class="testimonial-author">- DJ Remy, Port Harcourt</span>
+      </div>
+      <div class="testimonial">
+        "I was skeptical at first, but this works! I've made over N100k just listening to what I already love!"
+        <span class="testimonial-author">- Grace M., Ibadan</span>
+      </div>
+      <div class="testimonial">
+        "Premium feels premium. Smooth, crisp sound and more cash for my playlists. I’m recommending to everyone!"
+        <span class="testimonial-author">- Felix A., Enugu</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="security-badge">
+        <span class="security-icon">🔒</span>
+        <span>100% Secure Payment Processing</span>
+      </div>
+      <div>© 2025 Nuvia Music Streaming. All Rights Reserved.</div>
+    </div>
+  </div>
+
+  <!-- Testimonial Carousel Script -->
+  <script>
+    const testimonials = document.querySelectorAll('.testimonial');
+    let currentIndex = 0;
+
+    function showNextTestimonial() {
+      testimonials[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % testimonials.length;
+      testimonials[currentIndex].classList.add('active');
+    }
+
+    setInterval(showNextTestimonial, 6000);
+  </script>
+</body>
+</html>
