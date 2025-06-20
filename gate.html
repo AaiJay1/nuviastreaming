@@ -3,190 +3,161 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout Payment - Nuvia</title>
+  <title>Secure Payment Gateway</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-    :root {
-      --primary-color: #ffffff;
-      --background-color: #1a0000;
-      --accent-color: #440000;
-      --text-color: #eeeeee;
-      --highlight-color: #ff7a00;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
-    }
-
     body {
-      background-color: var(--background-color);
-      color: var(--text-color);
-      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fffdf9;
+      color: #000;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    .icon-lock {
+      font-size: 1.5rem;
+      color: orange;
+      text-align: center;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.1rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    .notice {
+      background-color: #ffe0b2;
+      padding: 0.6rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .section-box {
+      background-color: #fff6ec;
+      border-radius: 14px;
+      padding: 0.8rem;
+    }
+
+    .payment-info {
+      background-color: #800000;
+      color: white;
+      padding: 0.7rem;
+      border-radius: 8px;
+      margin-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .warning-box {
+      background-color: #ffcc8a;
+      padding: 0.6rem;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 1rem;
+      background-color: orange;
+      color: #4b0000;
+      font-size: 0.9rem;
+      padding: 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
       display: flex;
       justify-content: center;
       align-items: center;
-    }
-
-    .payment-container {
-      width: 90%;
-      max-width: 500px;
-      background-color: var(--accent-color);
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-      text-align: center;
-    }
-
-    .payment-header {
-      margin-bottom: 2rem;
-    }
-
-    .payment-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .payment-subtitle {
-      font-size: 1rem;
-      opacity: 0.85;
-    }
-
-    .payment-details {
-      background-color: rgba(255, 255, 255, 0.05);
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      text-align: left;
-    }
-
-    .detail-item {
-      margin-bottom: 1.5rem;
-    }
-
-    .detail-label {
-      font-size: 0.9rem;
-      opacity: 0.7;
-      margin-bottom: 0.3rem;
-    }
-
-    .detail-value {
-      font-size: 1.1rem;
-      font-weight: 500;
-      word-break: break-word;
-    }
-
-    .timer-notice {
-      color: #ff6b6b;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-
-    .confirmation-checkbox {
-      display: flex;
-      align-items: center;
-      margin-bottom: 2rem;
       gap: 0.5rem;
-    }
-
-    .confirmation-checkbox input {
-      width: 18px;
-      height: 18px;
-    }
-
-    .confirmation-label {
-      font-size: 0.9rem;
-    }
-
-    .payment-btn {
-      background-color: var(--highlight-color);
-      color: var(--primary-color);
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      width: 100%;
       text-decoration: none;
-      display: inline-block;
-      text-align: center;
     }
 
-    .payment-btn:hover {
-      background-color: #e86e00;
-      transform: translateY(-2px);
+    .copy-icon, .info-icon {
+      font-size: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
     }
 
-    .payment-btn.disabled {
-      background-color: rgba(255, 255, 255, 0.1);
-      cursor: not-allowed;
-      transform: none;
-      pointer-events: none;
+    .info-icon {
+      color: black;
+    }
+
+    .checkmark {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      h2 { font-size: 1rem; }
+      .notice, .payment-info, .warning-box { font-size: 0.8rem; }
+      .submit-btn { font-size: 0.85rem; padding: 0.7rem; }
     }
   </style>
 </head>
 <body>
-  <div class="payment-container">
-    <div class="payment-header">
-      <h1 class="payment-title">Checkout Payment</h1>
-      <p class="payment-subtitle">🔒 Secured Payment Gateway</p>
+  <div class="container">
+    <div class="icon-lock">🔒</div>
+    <h2>Secured Payment Gateway</h2>
+
+    <div class="notice">
+      <span>Proceed to your bank app to complete this transaction</span>
+      <button class="info-icon" onclick="copyText('7063365160')" title="Copy Account Number">📋</button>
     </div>
 
-    <div class="payment-details">
-      <p>Proceed to your bank app to complete this transfer</p>
-
-      <div class="detail-item">
-        <div class="detail-label">Account Number</div>
-        <div class="detail-value">7063365160</div>
+    <div class="section-box">
+      <div class="payment-info">
+        <span id="acct-num">7063365160</span>
+        <button class="copy-icon" onclick="copyText('7063365160')" title="Copy Account Number">📋</button>
+      </div>
+      <div class="payment-info">
+        <span id="bank-name">Opay</span>
+        <button class="copy-icon" onclick="copyText('Opay')" title="Copy Bank">📋</button>
+      </div>
+      <div class="payment-info">
+        <span id="acct-name">Oluwabukola Balogun</span>
+        <button class="copy-icon" onclick="copyText('Oluwabukola Balogun')" title="Copy Name">📋</button>
       </div>
 
-      <div class="detail-item">
-        <div class="detail-label">Bank Name</div>
-        <div class="detail-value">Opay</div>
-      </div>
-
-      <div class="detail-item">
-        <div class="detail-label">Account Name</div>
-        <div class="detail-value">Oluwabukola Oluwasina Balogun</div>
+      <div class="warning-box">
+        <span>Complete this payment before 1:00 Hour</span>
+        <span class="info-icon" title="Payment Deadline">ℹ️</span>
       </div>
     </div>
 
-    <p class="timer-notice">Complete this payment before 1:00 Hour</p>
-
-    <div class="confirmation-checkbox">
-      <input type="checkbox" id="paymentConfirmation" />
-      <label for="paymentConfirmation" class="confirmation-label">I have made the bank transfer</label>
-    </div>
-
-    <a 
-      href="https://wa.me/2347063365160?text=Hello%20admin,%20I%20just%20made%20payment%20for%20Nuvia%20registration%20on%20the%20payment%20web%20gateway."
-      class="payment-btn" 
-      id="completeBtn" 
-      target="_blank">
-      Complete Payment
+    <!-- WhatsApp Button with prefilled message -->
+    <a
+      class="submit-btn"
+      href="https://wa.me/2349019788777?text=Hello%20admin,%20I%20just%20made%20payment%20for%20nuvia%20registration%20on%20the%20payment%20web%20gateway."
+      target="_blank"
+    >
+      I have made the bank transfer ✔️
     </a>
   </div>
 
   <script>
-    const checkbox = document.getElementById('paymentConfirmation');
-    const btn = document.getElementById('completeBtn');
-
-    checkbox.addEventListener('change', function () {
-      if (this.checked) {
-        btn.classList.remove('disabled');
-      } else {
-        btn.classList.add('disabled');
-      }
-    });
-
-    // Button is disabled until checkbox is checked
-    btn.classList.add('disabled');
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied: ' + text);
+      }).catch(err => {
+        alert('Failed to copy text');
+      });
+    }
   </script>
 </body>
 </html>
